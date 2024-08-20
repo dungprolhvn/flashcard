@@ -2,9 +2,16 @@
     "manifest_version": 3,
     "name": "Flashcard for Learning Language",
     "description": "A flashcard for me to learn Japanese",
-    "version": "0.1",
+    "version": "1.0",
     "action": {
         "default_popup": "popup/hello.html",
         "default_icon": "images/hello_extensions.png"
+    },
+    "permissions":  [
+        "storage",
+        "contextMenus"
+    ],
+    "background": {
+        "service_worker": "scripts/saveNewWord.js"
     }
 }
