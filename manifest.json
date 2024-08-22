@@ -5,13 +5,17 @@
     "version": "1.0",
     "action": {
         "default_popup": "popup/hello.html",
-        "default_icon": "images/hello_extensions.png"
+        "default_icon": "images/icon.jpg"
+    },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    },
+    "background": {
+        "service_worker": "scripts/saveNewWord.js",
+        "type": "module"
     },
     "permissions":  [
         "storage",
         "contextMenus"
-    ],
-    "background": {
-        "service_worker": "scripts/saveNewWord.js"
-    }
+    ]
 }

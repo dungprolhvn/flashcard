@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const deck = ["dummy"];
+    const deck = [{'word': 'こんにちは', 'translation': 'Hello'}];
     const wordDiv = document.getElementById("word");
     const showWordButton = document.getElementById("show-word");
 
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chrome.storage.local.get(['deck'], (result) => {
             const storeddeck = result.deck || [];
             const randomWord = storeddeck[Math.floor(Math.random() * storeddeck.length)];
-            wordDiv.textContent = randomWord;
+            wordDiv.textContent = `${randomWord.word}\n${randomWord.translation}`;
         });
     });
 });
