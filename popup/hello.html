@@ -12,7 +12,13 @@
         <div class="text-center">
             <h1>Flashcard</h1>
             <button class="btn btn-info" id="show-word">Random word</button>
-            <h1 id="word"></h1>
+            <div class="fcard" id="fcard-front">
+                Click the above button to start learning
+            </div>
+            <div class="fcard" id="fcard-back" hidden>
+                This is the back of the flashcard
+            </div>
+            <button class="btn btn-secondary" id="flip-card">Flip</button>
         </div>
         <script src="../scripts/popup.js"></script>
     </div>

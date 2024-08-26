@@ -7,15 +7,14 @@
         "default_popup": "popup/hello.html",
         "default_icon": "images/icon.jpg"
     },
-    "content_security_policy": {
-        "extension_pages": "script-src 'self'; object-src 'self'"
-    },
     "background": {
-        "service_worker": "scripts/saveNewWord.js",
+        "service_worker": "scripts/worker1.js",
         "type": "module"
     },
     "permissions":  [
         "storage",
-        "contextMenus"
+        "contextMenus",
+        "notifications",
+        "tabs"
     ]
 }

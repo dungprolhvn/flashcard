@@ -4,3 +4,16 @@ html, body {
       margin: 0;
       padding: 0;
 }
+
+.fcard {
+      background-color: lightblue;
+      font-size: 2em;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin: 20px auto;
+      max-width: 300px;
+}
