@@ -13,27 +13,44 @@ chrome.runtime.onInstalled.addListener(() => {
         title: "Preferences",
         contexts: ["action"]
     });
+
+    // save default settings in local storage
+    chrome.storage.local.get(['sourceLang', 'targetLang'], result => {
+        if (!result.sourceLang) {
+            chrome.storage.local.set({ sourceLang: 'JA' });
+        }
+        if (!result.targetLang) {
+            chrome.storage.local.set({ targetLang: 'EN-GB' });
+        }
+    });
 });
 
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (info.menuItemId == "addWord" && info.selectionText) {
-        const newWord = info.selectionText.trim();
-        translateWord(newWord)
-        .then(translatedText => {
-            console.log(`Word ${newWord}, Meaning ${translatedText}`);
-            const newCard = {'word': newWord, 'translation': translatedText};
-            chrome.storage.local.get(['deck'], result => {
-                const deck = result.deck || [];
-                deck.push(newCard);
-                chrome.storage.local.set({deck: deck }, () => {
-                    console.log(`Card ${JSON.stringify(newCard)} added to deck!`);
-                    notifyUser(newCard);
+        chrome.storage.local.get(['sourceLang', 'targetLang'], result => {
+            const sourceLang = result.sourceLang;
+            const targetLang = result.targetLang;
+            const newWord = info.selectionText.trim();
+
+            translateWord(newWord, sourceLang, targetLang)
+            .then(translatedText => {
+                console.log(`Word ${newWord}, Meaning ${translatedText}`);
+                const newCard = {'word': newWord, 'translation': translatedText};
+                chrome.storage.local.get(['deck'], result => {
+                    const deck = result.deck || [];
+                    deck.push(newCard);
+                    chrome.storage.local.set({deck: deck }, () => {
+                        console.log(`Card ${JSON.stringify(newCard)} added to deck!`);
+                        notifyUser(newCard);
+                    });
                 });
-            });
-        })
-        .catch(error => console.log(error));
+            })
+            .catch(error => console.log(error));
+        });
+
     }
+    // open preferences tab
     else if (info.menuItemId == "preference") {
         chrome.tabs.create({
             url: '../html/preference.html'
