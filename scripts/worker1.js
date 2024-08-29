@@ -38,8 +38,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
                 console.log(`Word ${newWord}, Meaning ${translatedText}`);
                 const newCard = {'word': newWord, 'translation': translatedText};
                 chrome.storage.local.get(['deck'], result => {
-                    const deck = result.deck || [];
-                    deck.push(newCard);
+                    // Add new card to deck.cardList
+                    const deck = result.deck || { size: 0, cardList: {} };
+                    deck.size += 1;
+                    deck.cardList[newCard.word] = newCard;
+                    // Save deck to local storage
                     chrome.storage.local.set({deck: deck }, () => {
                         console.log(`Card ${JSON.stringify(newCard)} added to deck!`);
                         notifyUser(newCard);

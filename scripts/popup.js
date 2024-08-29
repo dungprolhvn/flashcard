@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const deck = [{'word': 'こんにちは', 'translation': 'Hello'}];
+    // dummy deck for saving if not exist any deck
+    const deck = { size: 0, cardList: {} };
     const fcardFront = document.getElementById("fcard-front");
     const fcardBack = document.getElementById("fcard-back");
     const showWordButton = document.getElementById("show-word");
@@ -7,17 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // get deck from local storage, save if there's no deck in storage
     chrome.storage.local.get(['deck'], result => {
         if (!result.deck) {
-            chrome.storage.local.set({deck: deck});
+            chrome.storage.lSocal.set({deck: deck});
         }
+        document.getElementById('deck-size').textContent = result.deck.size;
     });
-
     // Add event listener to show random word
     showWordButton.addEventListener('click', () => {
         chrome.storage.local.get(['deck'], (result) => {
-            const storeddeck = result.deck || [];
-            const randomWord = storeddeck[Math.floor(Math.random() * storeddeck.length)];
-            fcardFront.textContent = `${randomWord.word}`;
-            fcardBack.textContent = `${randomWord.translation}`;
+            const storeddeck = result.deck || { size: 0, cardList: {} };
+            const cardList = storeddeck.cardList;
+            const keys = Object.keys(cardList);
+            const randomKey = keys[Math.floor(Math.random() * keys.length)];
+            fcardFront.textContent = `${cardList[randomKey].word}`;
+            fcardBack.textContent = `${cardList[randomKey].translation}`;
         });
     });
 
