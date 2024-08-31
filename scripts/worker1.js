@@ -57,7 +57,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     else if (info.menuItemId == "preference") {
         chrome.tabs.create({
             url: '../html/preference.html'
-        })
+        });
     }
 });
 

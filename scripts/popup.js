@@ -4,7 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const fcardFront = document.getElementById("fcard-front");
     const fcardBack = document.getElementById("fcard-back");
     const showWordButton = document.getElementById("show-word");
+    const customLearnButton = document.getElementById('custom-learn');
+    const editDeckButton = document.getElementById('edit-deck');
     const flipCardButton = document.getElementById("flip-card");
+
     // get deck from local storage, save if there's no deck in storage
     chrome.storage.local.get(['deck'], result => {
         if (!result.deck) {
@@ -12,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         document.getElementById('deck-size').textContent = result.deck.size;
     });
+
     // Add event listener to show random word
     showWordButton.addEventListener('click', () => {
         chrome.storage.local.get(['deck'], (result) => {
@@ -24,7 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Add event listener to flip card
     flipCardButton.addEventListener('click', flipCard);
+
+    // Add event listener to edit deck button
+    editDeckButton.addEventListener('click', event => {
+        chrome.tabs.create({
+            url: '../html/edit.html'
+        });
+    });
 
 });
 
