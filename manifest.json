@@ -5,10 +5,10 @@
     "version": "1.0",
     "action": {
         "default_popup": "popup/hello.html",
-        "default_icon": "images/icon.jpg"
+        "default_icon": "images/icon.png"
     },
     "background": {
-        "service_worker": "scripts/worker1.js",
+        "service_worker": "scripts/background.js",
         "type": "module"
     },
     "permissions":  [

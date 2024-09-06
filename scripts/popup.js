@@ -23,8 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const cardList = storeddeck.cardList;
             const keys = Object.keys(cardList);
             const randomKey = keys[Math.floor(Math.random() * keys.length)];
-            fcardFront.textContent = `${cardList[randomKey].word}`;
-            fcardBack.textContent = `${cardList[randomKey].translation}`;
+            const randomCard = cardList[randomKey];
+            if (randomCard.reading != "") {
+                fcardFront.innerHTML = `
+                    <ruby>${randomCard.word}<rt>${randomCard.reading}</rt></ruby>`;
+            }   
+            else {  
+                fcardFront.textContent = `${randomCard.word}`;
+            }
+            fcardBack.textContent = `${randomCard.translation}`;
         });
     });
 

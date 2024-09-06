@@ -36,17 +36,29 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
             translateWord(newWord, sourceLang, targetLang)
             .then(translatedText => {
                 console.log(`Word ${newWord}, Meaning ${translatedText}`);
-                const newCard = {'word': newWord, 'translation': translatedText};
+
+                const newCard = {
+                    word: newWord,
+                    reading: "",
+                    translation: translatedText,
+                    interval: 1,
+                    repetitions: 0,
+                    ease: 2.5,
+                    dueDate: new Date()
+                };
+
                 chrome.storage.local.get(['deck'], result => {
                     // Add new card to deck.cardList
                     const deck = result.deck || { size: 0, cardList: {} };
-                    deck.size += 1;
-                    deck.cardList[newCard.word] = newCard;
-                    // Save deck to local storage
-                    chrome.storage.local.set({deck: deck }, () => {
-                        console.log(`Card ${JSON.stringify(newCard)} added to deck!`);
-                        notifyUser(newCard);
-                    });
+                    if (!(newCard.word in deck.cardList)) {
+                        deck.size += 1;
+                        deck.cardList[newCard.word] = newCard;
+                        // Save deck to local storage
+                        chrome.storage.local.set({deck: deck }, () => {
+                            console.log(`Card ${JSON.stringify(newCard)} added to deck!`);
+                            notifyUser(newCard);
+                        });
+                    }
                 });
             })
             .catch(error => console.log(error));
