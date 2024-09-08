@@ -44,7 +44,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
                     interval: 1,
                     repetitions: 0,
                     ease: 2.5,
-                    dueDate: new Date()
+                    dueDate: new Date().toISOString()
                 };
 
                 chrome.storage.local.get(['deck'], result => {

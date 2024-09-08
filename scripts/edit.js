@@ -70,11 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const translation = card.querySelector('.translation').value;
                     const reading = card.querySelector('.reading').value;
                     deck.cardList[key].reading = reading;
-                    deck.cardList[key].interval = 1;
-                    deck.cardList[key].repetitions = 0;
-                    deck.cardList[key].ease = 2.5;
-                    deck.cardList[key].dueDate = new Date();
                     deck.cardList[key].translation = translation;
+                    // Below is for dev purpose
+                    // deck.cardList[key].interval = 1;
+                    // deck.cardList[key].repetitions = 0;
+                    // deck.cardList[key].ease = 2.5;
+                    // deck.cardList[key].dueDate = new Date().toISOString();
                 });
                 chrome.storage.local.set({ deck: deck });
                 alert('Changes saved!');

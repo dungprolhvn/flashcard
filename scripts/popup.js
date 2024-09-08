@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fcardFront = document.getElementById("fcard-front");
     const fcardBack = document.getElementById("fcard-back");
     const showWordButton = document.getElementById("show-word");
-    const customLearnButton = document.getElementById('custom-learn');
+    const learnButton = document.getElementById('custom-learn');
     const editDeckButton = document.getElementById('edit-deck');
     const flipCardButton = document.getElementById("flip-card");
 
@@ -37,6 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add event listener to flip card
     flipCardButton.addEventListener('click', flipCard);
+
+    // Add event listener to learning function
+    learnButton.addEventListener('click', () => {
+        chrome.tabs.create({
+           url: '../html/learn.html' 
+        });
+    });
 
     // Add event listener to edit deck button
     editDeckButton.addEventListener('click', event => {

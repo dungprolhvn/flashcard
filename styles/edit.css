@@ -1,24 +1,61 @@
-@keyframes hide {
+@keyframes blackHole {
     0% {
         opacity: 1;
-        height: 100%;
-        line-height: 100%;
-        padding: 20px;
-        margin-bottom: 10px;
+        transform: translateY(0) scale(1);
     }
-    75% {
-        opacity: 0;
-        height: 100%;
-        line-height: 100%;
-        padding: 20px;
-        margin-bottom: 10px;
+    50% {
+        opacity: 0.5;
+        transform: translateY(50px) scale(0.5);
     }
     100% {
         opacity: 0;
-        height: 0px;
-        line-height: 0px;
-        padding: 0px;
-        margin-bottom: 0px;
+        transform: translateY(100px) scale(0);
+    }
+}
+
+
+@keyframes slideFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes shrinkFadeOut {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+}
+
+@keyframes rotateFadeOut {
+    0% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(90deg);
+    }
+}
+
+
+@keyframes hide {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
     }
 }
 
@@ -26,10 +63,11 @@
 .fcard-edit {
     background-color: #a5e1ff;
     padding: 10px;
-    animation-name: hide;
+    animation-name: slideFadeOut;
     animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-play-state: paused;
+    animation-timing-function: ease-in-out;
 }
 
 table {

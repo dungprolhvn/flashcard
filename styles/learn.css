@@ -1,0 +1,43 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+#card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    width: 350px;
+    margin-bottom: 20px;
+}
+
+.fcard {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.btn {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+#flip-card {
+    margin-top: 10px;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+}
+
+.rating-button {
+    width: 100px;
+}
