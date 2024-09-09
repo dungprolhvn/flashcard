@@ -7,13 +7,6 @@ chrome.runtime.onInstalled.addListener(() => {
         title: "Add word to flashcard deck",
         contexts: ["selection"]
     });
-    // context menu for Options feature
-    chrome.contextMenus.create({
-        id: "preference",
-        title: "Preferences",
-        contexts: ["action"]
-    });
-
     // save default settings in local storage
     chrome.storage.local.get(['sourceLang', 'targetLang'], result => {
         if (!result.sourceLang) {

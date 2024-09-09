@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dueCards.length == 0) {
             handleNoDueCards();
         } else {
-            
             let currentCardIndex = 0;
             // display first card
             displayCurrentCard(dueCards, currentCardIndex);
@@ -31,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         displayCurrentCard(dueCards, currentCardIndex);
                     } else {
                         // reset current card index
-                        currentCardIndex = 0;
                         alert('Learning complete!');
+                        location.reload();
                     }
                 });
             });

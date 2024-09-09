@@ -1,10 +1,11 @@
 {
     "manifest_version": 3,
     "name": "Flashcard for Learning Language",
-    "description": "A flashcard for me to learn Japanese",
-    "version": "1.0",
+    "description": "A flashcard extension that allows you to save words to a deck, and review them using space repetition learning",
+    "options_page": "html/preference.html",
+    "version": "2.0",
     "action": {
-        "default_popup": "popup/hello.html",
+        "default_popup": "popup/main_popup.html",
         "default_icon": "images/icon.png"
     },
     "background": {

@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Edit flashcards</title>
+    <link rel="icon" href="../images/icon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js;">
     <link rel="stylesheet" href="../styles/edit.css">
@@ -10,7 +11,9 @@
 <body>
     <div class="container">
         <h1>Edit your flashcard deck</h1>
-        <button class="btn btn-primary" id="save-changes">Save changes</button> <br>
+        <button class="btn btn-primary" id="save-changes">Save changes</button> 
+        <button class="btn btn-secondary" id="export-button">Export deck to CSV</button>
+        <br>
         <small>To undo the changes, simply reload the page <br>Once you click the button above, your changes can't be undo</small>
         <table>
             <thead>

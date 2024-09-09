@@ -81,5 +81,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Changes saved!');
             }
         });
+        // event listener for export button
+        const exportDeckButton = document.getElementById('export-button');
+        exportDeckButton.addEventListener('click', () => {
+            exportDeckToCSV(deck);
+        });
     });
 });
+
+
+function exportDeckToCSV(deck) {
+    const csvRows = [];
+    const headers = ['Word', 'Translation', 'Reading'];
+    csvRows.push(headers.join(','));
+    for (const cardId in deck.cardList) {
+        const card = deck.cardList[cardId];
+        const row = [escapeForCSV(card.word), escapeForCSV(card.translation), card.reading];
+        csvRows.push(row.join(','));
+    }
+    const csvString = csvRows.join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'exported_deck.csv');
+    a.click();
+}
+
+function escapeForCSV(value) {
+    if (typeof value === 'string') {
+        value = value.replace(/"/g, '""');
+        if (value.includes(',') || value.includes('\n') || value.includes('"')) {
+            value = `"${value}"`;
+        }
+    }
+    return value;
+}
